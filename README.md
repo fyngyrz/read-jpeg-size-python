@@ -1,9 +1,11 @@
 # read-jpeg-size-python
-Quickly and efficiently read jpeg size for python 2 and 3
+Quickly and efficiently read jpeg size for python 2 and 3 with a simple, lightweight fucnion.
+
+Note that I use a tab size of 4, and code is formatted accordingly. Github doesn't allow control of tab size in markdown code blocks, sigh. What they _want_ you to do is convert the tabs to spaces, which is _insane._
 
 # Python 2
 
-```python2
+```python
 # Python 2
 # reads jpeg image size quickly and efficiently
 # returns width,height or 0,0 if cannot determine
@@ -47,7 +49,7 @@ def jpeg_res(filename):
 		ct = 0
 		# open image for reading in binary mode
 		with open(filename,'rb') as img:
-			x = img.read(2) # JPEG marker
+			x = img.read(2) # Look for jpeg file type marker
 			if x[0] != 0xff or x[1] != 0xd8:
 				return 0,0	# not a jpeg
 			while too:
@@ -55,18 +57,18 @@ def jpeg_res(filename):
 				if ct > 100:	# frame block should be pretty early... quit if not
 					return 0,0
 				x = img.read(2)	# read marker
-				l = img.read(2)	# read size
+				l = img.read(2)	# read size (includes size bytes... bizarre, but true)
 				if x[0] == 0xff and x[1] == 0xc0:
 					ll = l[0] * 256 + l[1]	# get block size
-					z = img.read(ll)		# read block
+					z = img.read(ll-2)		# read block, minus size bytes
 					height = z[1] * 256 + z[2]
 					width  = z[3] * 256 + z[4]
 					return width,height
 				else: # not the right kind of block
 					ll = l[0] * 256 + l[1]	# get block size
-					img.seek(ll-2,1)	# seek past the block
-	except Exception as e:	# can diag errors with str(e)
-		print(str(e))
+					img.seek(ll-2,1)	# seek relative past the block
+	except Exception as e:	# you can use str(e) to figure out the problem here
+		pass	# something went completely wrong
 		return 0,0
 
 ```
