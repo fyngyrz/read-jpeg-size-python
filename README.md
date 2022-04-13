@@ -38,7 +38,7 @@ def jpeg_res(filename):
 	return 0,0	# error return
 
 ```
-# Python 3:
+# Python 3
 ```python3
 # Python 3
 # Read jpeg image size quickly and efficiently
