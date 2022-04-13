@@ -69,6 +69,6 @@ def jpeg_res(filename):
 					img.seek(ll-2,1)	# seek relative past the block
 	except Exception as e:	# you can use str(e) to figure out the problem here
 		pass	# something went completely wrong
-		return 0,0
+	return 0,0
 
 ```
