@@ -1,5 +1,5 @@
 # read-jpeg-and-png-width-and-height-python
-Simple, efficient, lightweight functions to quickly and efficiently read jpeg and png width and height for python 2 and 3. The images are explicitly parsed to the extent that they need to be; if you get values back other than 0,0 you can be very confident they are correct.
+Simple, efficient, lightweight functions to read jpeg and png width and height for python 2 and 3. The images are explicitly parsed to the extent that they need to be; if you get values back other than 0,0 you can be very confident they are correct.
 
 Note that I use a tab size of 4, and code is formatted accordingly. Github doesn't allow control of tab size in markdown code blocks, sigh. What they _want_ you to do is convert the tabs to spaces, which is _insane._
 
